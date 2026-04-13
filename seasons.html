@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DragData | Home</title>
+    <!--tailwind-->
+    <link href="src/output.css" rel="stylesheet" />
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=League+Gothic&family=Lexend:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!--icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/4.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
+    />
+  </head>
+  <body class="font-lexend text-neutral">
+    <!--main container-->
+    <div class="h-screen bg-pink-50/70 flex flex-col">
+      <!--topnav-->
+      <div class="flex bg-primary text-base-100 h-16 items-center px-20">
+        <div>
+          <h1 class="font-black text-2xl">DragData</h1>
+        </div>
+        <div class="flex-1 flex justify-center">
+          <ul class="menu menu-horizontal space-x-4">
+            <li><a class="navItem" href="index.html">Home</a></li>
+            <li>
+              <a class="navItem navActive" href="seasons.html">Seasons</a>
+            </li>
+            <li><a class="navItem" href="lists.html">Lists</a></li>
+            <li><a class="navItem" href="collections.html">Collections</a></li>
+          </ul>
+        </div>
+        <div>
+          <a class="btn bg-base-100 outline-0 shadow-none w-30">Login</a>
+        </div>
+      </div>
+      <!--submenu-->
+      <div class="bg-base-100 flex h-16 items-center px-60 shadow-xs">
+        <div class="h-full flex-1">
+          <div role="tablist" class="tabs tabs-border h-full space-x-4">
+            <a role="tab" class="tab tab-active h-full">Current</a>
+            <a role="tab" class="tab h-full">Standard</a>
+            <a role="tab" class="tab h-full">All Stars</a>
+            <a role="tab" class="tab h-full">Vs. The World</a>
+          </div>
+        </div>
+        <div>
+          <label class="input rounded-full outline-0 w-100 pl-4"
+            ><i class="fi fi-br-search pt-1 opacity-60"></i>
+            <input type="search" class="grow outline-0" placeholder="Search" />
+          </label>
+        </div>
+      </div>
+      <!--main-->
+      <div class="flex-1 px-60 py-6">
+        <!--header-->
+        <div class="flex items-center">
+          <h1 class="text-sm font-semibold flex-1">Currently Airing</h1>
+          <div class="flex items-center gap-2">
+            <select class="select rounded-full w-30 pl-6">
+              <option>A-Z</option>
+              <option>Air Date</option>
+              <option>Latest</option>
+            </select>
+            <select class="select rounded-full w-30 pl-6">
+              <option>All</option>
+              <option>US</option>
+              <option>UK</option>
+              <option>CA</option>
+            </select>
+          </div>
+        </div>
+        <!--list-->
+        <div>
+          <ul class="list bg-base-100 rounded-box shadow-xs mt-6">
+            <li class="list-row">
+              <div>
+                <img
+                  class="size-10 rounded-box"
+                  src="https://img.daisyui.com/images/profile/demo/1@94.webp"
+                />
+              </div>
+              <div>
+                <div>Dio Lupa</div>
+                <div class="text-xs uppercase font-semibold opacity-60">
+                  Remaining Reason
+                </div>
+              </div>
+              <button class="btn btn-square btn-ghost">
+                <svg
+                  class="size-[1.2em]"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    stroke-width="2"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M6 3L20 12 6 21 6 3z"></path>
+                  </g>
+                </svg>
+              </button>
+              <button class="btn btn-square btn-ghost">
+                <svg
+                  class="size-[1.2em]"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    stroke-width="2"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+                    ></path>
+                  </g>
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
