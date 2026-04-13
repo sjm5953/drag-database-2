@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DragData | Home</title>
+    <title>DragData | Seasons</title>
     <!--tailwind-->
     <link href="src/output.css" rel="stylesheet" />
     <!--fonts-->
@@ -23,11 +23,13 @@
     <!--main container-->
     <div class="h-screen bg-pink-50/70 flex flex-col">
       <!--topnav-->
-      <div class="flex bg-primary text-base-100 h-16 items-center px-20">
+      <div
+        class="flex bg-primary text-base-100 h-16 items-center md:px-20 px-4"
+      >
         <div>
           <h1 class="font-black text-2xl">DragData</h1>
         </div>
-        <div class="flex-1 flex justify-center">
+        <div class="flex-1 md:flex hidden justify-center">
           <ul class="menu menu-horizontal space-x-4">
             <li><a class="navItem" href="index.html">Home</a></li>
             <li>
@@ -37,21 +39,53 @@
             <li><a class="navItem" href="collections.html">Collections</a></li>
           </ul>
         </div>
-        <div>
+        <div class="md:flex hidden">
           <a class="btn bg-base-100 outline-0 shadow-none w-30">Login</a>
         </div>
       </div>
       <!--submenu-->
-      <div class="bg-base-100 flex h-16 items-center px-60 shadow-xs">
+      <div class="bg-base-100 flex h-16 items-center md:px-60 px-8 shadow-xs">
         <div class="h-full flex-1">
-          <div role="tablist" class="tabs tabs-border h-full space-x-4">
-            <a role="tab" class="tab tab-active h-full">Current</a>
-            <a role="tab" class="tab h-full">Standard</a>
-            <a role="tab" class="tab h-full">All Stars</a>
-            <a role="tab" class="tab h-full">Vs. The World</a>
+          <div
+            id="seasonTabs"
+            role="tablist"
+            class="tabs md:tabs-sm tabs-xs tabs-border h-full md:space-x-4 space-x-2"
+          >
+            <button
+              type="button"
+              role="tab"
+              class="tab tab-active h-full"
+              data-tab="current"
+            >
+              Current
+            </button>
+            <button
+              type="button"
+              role="tab"
+              class="tab h-full"
+              data-tab="Standard"
+            >
+              Standard
+            </button>
+            <button
+              type="button"
+              role="tab"
+              class="tab h-full"
+              data-tab="All Stars"
+            >
+              All Stars
+            </button>
+            <button
+              type="button"
+              role="tab"
+              class="tab h-full"
+              data-tab="VS. The World"
+            >
+              VS. The World
+            </button>
           </div>
         </div>
-        <div>
+        <div class="md:flex hidden">
           <label class="input rounded-full outline-0 w-100 pl-4"
             ><i class="fi fi-br-search pt-1 opacity-60"></i>
             <input type="search" class="grow outline-0" placeholder="Search" />
@@ -59,11 +93,13 @@
         </div>
       </div>
       <!--main-->
-      <div class="flex-1 px-60 py-6">
+      <div class="flex-1 md:px-60 px-8 py-6">
         <!--header-->
-        <div class="flex items-center">
-          <h1 class="text-sm font-semibold flex-1">Currently Airing</h1>
-          <div class="flex items-center gap-2">
+        <div class="flex items-end">
+          <h1 id="seasonListHeading" class="text-sm font-semibold flex-1">
+            Current
+          </h1>
+          <div class="md:flex hidden items-center gap-2">
             <select class="select rounded-full w-30 pl-6">
               <option>A-Z</option>
               <option>Air Date</option>
@@ -79,60 +115,263 @@
         </div>
         <!--list-->
         <div>
-          <ul class="list bg-base-100 rounded-box shadow-xs mt-6">
-            <li class="list-row">
-              <div>
-                <img
-                  class="size-10 rounded-box"
-                  src="https://img.daisyui.com/images/profile/demo/1@94.webp"
-                />
-              </div>
-              <div>
-                <div>Dio Lupa</div>
-                <div class="text-xs uppercase font-semibold opacity-60">
-                  Remaining Reason
-                </div>
-              </div>
-              <button class="btn btn-square btn-ghost">
-                <svg
-                  class="size-[1.2em]"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <g
-                    stroke-linejoin="round"
-                    stroke-linecap="round"
-                    stroke-width="2"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path d="M6 3L20 12 6 21 6 3z"></path>
-                  </g>
-                </svg>
-              </button>
-              <button class="btn btn-square btn-ghost">
-                <svg
-                  class="size-[1.2em]"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <g
-                    stroke-linejoin="round"
-                    stroke-linecap="round"
-                    stroke-width="2"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path
-                      d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
-                    ></path>
-                  </g>
-                </svg>
-              </button>
-            </li>
-          </ul>
+          <ul
+            id="seasonList"
+            class="list bg-base-100 rounded-box shadow-xs mt-6"
+          ></ul>
         </div>
       </div>
     </div>
+    <template id="seasonListItemTemplate">
+      <li class="list-row cursor-pointer">
+        <div>
+          <img
+            data-field="franchise-image"
+            class="w-14 md:w-22 rounded-box object-cover"
+            src=""
+            alt=""
+          />
+        </div>
+        <div class="md:ml-8">
+          <div
+            data-field="season-number"
+            class="font-bold text-[18px] text-primary"
+          ></div>
+          <div
+            data-field="air-status"
+            class="text-xs uppercase font-semibold opacity-60"
+          ></div>
+        </div>
+        <button class="btn btn-square btn-ghost" type="button">
+          <i class="fi fi-br-angle-double-small-right pt-1 text-lg"></i>
+        </button>
+      </li>
+    </template>
+
+    <script>
+      const AIRTABLE_CONFIG = {
+        token:
+          "patmn8gGgQG1o0lHz.8217777cacd32622c6f3df66b4d02477a46fa49b850cdca9847697135251cc5a",
+        baseId: "appCBKfY0d97X8yQU",
+        seasonsTable: "Seasons",
+        franchisesTable: "Franchises",
+      };
+
+      const seasonTabs = document.getElementById("seasonTabs");
+      const seasonList = document.getElementById("seasonList");
+      const seasonListHeading = document.getElementById("seasonListHeading");
+      const seasonTemplate = document.getElementById("seasonListItemTemplate");
+
+      let allSeasons = [];
+      let franchiseMap = new Map();
+      let activeTab = "current";
+
+      function getHeaders() {
+        return {
+          Authorization: `Bearer ${AIRTABLE_CONFIG.token}`,
+        };
+      }
+
+      async function fetchAllRecords(tableName) {
+        const records = [];
+        let offset = "";
+
+        do {
+          const url = new URL(
+            `https://api.airtable.com/v0/${AIRTABLE_CONFIG.baseId}/${encodeURIComponent(tableName)}`,
+          );
+
+          if (offset) {
+            url.searchParams.set("offset", offset);
+          }
+
+          const response = await fetch(url.toString(), {
+            headers: getHeaders(),
+          });
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(
+              `Airtable request failed: ${response.status} ${errorText}`,
+            );
+          }
+
+          const data = await response.json();
+          records.push(...(data.records || []));
+          offset = data.offset || "";
+        } while (offset);
+
+        return records;
+      }
+
+      function normalizeValue(value) {
+        return String(value || "")
+          .trim()
+          .toLowerCase();
+      }
+
+      function extractAttachmentUrl(value) {
+        if (Array.isArray(value) && value.length > 0) {
+          return value[0]?.url || "";
+        }
+
+        return "";
+      }
+
+      function buildFranchiseMap(franchiseRecords) {
+        franchiseMap = new Map(
+          franchiseRecords.map((record) => {
+            const fields = record.fields || {};
+            const numericId = fields.id;
+            return [
+              String(numericId),
+              {
+                id: numericId,
+                name: fields.name || "Unknown Franchise",
+                code: fields.code || "",
+                imageUrl: extractAttachmentUrl(fields.image),
+              },
+            ];
+          }),
+        );
+      }
+
+      function getFilteredSeasons() {
+        if (activeTab === "current") {
+          return allSeasons.filter(
+            (season) => normalizeValue(season.airStatus) === "airing",
+          );
+        }
+
+        return allSeasons.filter(
+          (season) =>
+            normalizeValue(season.airStatus) !== "airing" &&
+            normalizeValue(season.type) === normalizeValue(activeTab),
+        );
+      }
+
+      function getHeadingText() {
+        return activeTab === "current" ? "Current" : activeTab;
+      }
+
+      function createEmptyState(message) {
+        const li = document.createElement("li");
+        li.className = "list-row text-sm opacity-70";
+        li.textContent = message;
+        return li;
+      }
+
+      function renderSeasonList() {
+        const seasonsToRender = getFilteredSeasons().sort((a, b) => {
+          const codeA = a.franchise?.code || "";
+          const codeB = b.franchise?.code || "";
+
+          if (codeA !== codeB) {
+            return codeA.localeCompare(codeB);
+          }
+
+          return Number(b.seasonNumber || 0) - Number(a.seasonNumber || 0);
+        });
+
+        seasonListHeading.textContent = getHeadingText();
+        seasonList.innerHTML = "";
+
+        if (!seasonsToRender.length) {
+          seasonList.appendChild(
+            createEmptyState("No seasons found for this tab."),
+          );
+          return;
+        }
+
+        seasonsToRender.forEach((season) => {
+          const item = seasonTemplate.content.firstElementChild.cloneNode(true);
+          const image = item.querySelector('[data-field="franchise-image"]');
+          const seasonNumber = item.querySelector(
+            '[data-field="season-number"]',
+          );
+          const airStatus = item.querySelector('[data-field="air-status"]');
+
+          image.src =
+            season.franchise?.imageUrl ||
+            `assets/${season.franchise?.code || "US"}/fran_logo.png`;
+          image.alt = season.franchise?.name || "Franchise logo";
+          seasonNumber.textContent = `${season.franchise?.code || ""} Season ${season.seasonNumber}`;
+          airStatus.textContent = season.airStatus || "Unknown Status";
+
+          seasonList.appendChild(item);
+        });
+      }
+
+      function setActiveTab(nextTab) {
+        activeTab = nextTab;
+
+        seasonTabs.querySelectorAll("[data-tab]").forEach((tabButton) => {
+          tabButton.classList.toggle(
+            "tab-active",
+            tabButton.dataset.tab === nextTab,
+          );
+        });
+
+        renderSeasonList();
+      }
+
+      async function loadSeasonData() {
+        if (
+          AIRTABLE_CONFIG.token.includes("PASTE_YOUR") ||
+          AIRTABLE_CONFIG.baseId.includes("PASTE_YOUR")
+        ) {
+          seasonList.innerHTML = "";
+          seasonList.appendChild(
+            createEmptyState(
+              "Add your Airtable token and base ID in AIRTABLE_CONFIG to load seasons.",
+            ),
+          );
+          return;
+        }
+
+        try {
+          const [franchiseRecords, seasonRecords] = await Promise.all([
+            fetchAllRecords(AIRTABLE_CONFIG.franchisesTable),
+            fetchAllRecords(AIRTABLE_CONFIG.seasonsTable),
+          ]);
+
+          buildFranchiseMap(franchiseRecords);
+
+          allSeasons = seasonRecords.map((record) => {
+            const fields = record.fields || {};
+            const franchiseId = Array.isArray(fields.franchise_id)
+              ? fields.franchise_id[0]
+              : fields.franchise_id;
+
+            return {
+              recordId: record.id,
+              type: fields.type || "",
+              airStatus: fields.air_status || "",
+              seasonNumber: fields.season_number || "",
+              franchiseId,
+              franchise: franchiseMap.get(String(franchiseId)) || null,
+            };
+          });
+
+          renderSeasonList();
+        } catch (error) {
+          console.error("Error loading Airtable data:", error);
+          seasonList.innerHTML = "";
+          seasonList.appendChild(
+            createEmptyState(
+              "Unable to load seasons from Airtable. Check your token, base ID, and field names.",
+            ),
+          );
+        }
+      }
+
+      seasonTabs.addEventListener("click", (event) => {
+        const tabButton = event.target.closest("[data-tab]");
+        if (!tabButton) return;
+        setActiveTab(tabButton.dataset.tab);
+      });
+
+      loadSeasonData();
+    </script>
   </body>
 </html>
